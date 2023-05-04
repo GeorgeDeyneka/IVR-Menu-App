@@ -10,7 +10,7 @@ const routes: Routes = [
     component: MainPageComponent,
     children: [
       {
-        path: 'create',
+        path: 'create-page',
         component: CreateIvrComponent,
       },
       {

@@ -1,45 +1,45 @@
-<div class="wrapper">
-  <a routerLink="/" class="link-home">Go back</a>
-  <h2 class="ivr__title">Добавить IVR</h2>
+  <app-home-btn></app-home-btn>
+
+  <h2 class="ivr__title">Create IVR</h2>
+
   <form class="ivr__form">
     <div class="ivr__input">
-      <h3 class="ivr__subtitle">Название IVR</h3>
+      <h3 class="ivr__subtitle">IVR name</h3>
       <mat-form-field class="ivr__form-field">
-        <mat-label>Введите название IVR...</mat-label>
+        <mat-label>Type name of IVR...</mat-label>
         <input required matInput />
       </mat-form-field>
     </div>
 
     <div class="ivr__input">
-      <h3 class="ivr__subtitle">Приветствие</h3>
+      <h3 class="ivr__subtitle">Announcement</h3>
       <mat-form-field class="ivr__form-field">
-        <mat-label>Выберите аудиофайл</mat-label>
+        <mat-label>Choose the audiofile...</mat-label>
         <mat-select>
-          <mat-option value="audiofile1.wav"> Аудиофайл 1 </mat-option>
-          <mat-option value="audiofile2.wav"> Аудиофайл 2 </mat-option>
+          <mat-option value="audiofile1.wav"> Audio 1 </mat-option>
+          <mat-option value="audiofile2.wav"> Audio 2 </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div class="ivr__select">
-      <h3 class="ivr__subtitle">Описание</h3>
+      <h3 class="ivr__subtitle">Description</h3>
       <mat-form-field class="ivr__form-field_description">
         <input matInput />
       </mat-form-field>
     </div>
 
     <div class="ivr__input">
-      <h3 class="ivr__subtitle">Таймаут</h3>
+      <h3 class="ivr__subtitle">Timeout</h3>
       <mat-form-field class="ivr__form-field">
         <input matInput />
       </mat-form-field>
     </div>
 
     <div class="ivr__input">
-      <h3 class="ivr__subtitle">Неудачных попыток</h3>
+      <h3 class="ivr__subtitle">Failed attempts</h3>
       <mat-form-field class="ivr__form-field">
         <input matInput />
       </mat-form-field>
     </div>
   </form>
-</div>

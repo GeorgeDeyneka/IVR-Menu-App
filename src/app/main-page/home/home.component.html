@@ -1,4 +1,11 @@
-<div class="wrapper">
-  <h2>Home Page</h2>
-  <a routerLink="/create">Create IVR Menu!</a>
-</div>
+<h2>Home Page</h2>
+
+<p class="paragraph">
+  Here you can generate data for the IVR menu. Click the button below to get
+  started.
+</p>
+
+<app-router-btn
+  [text]="'Create IVR Menu!'"
+  [route]="'/create-page'"
+></app-router-btn>

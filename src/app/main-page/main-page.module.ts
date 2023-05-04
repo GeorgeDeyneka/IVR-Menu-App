@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { HeaderComponent } from './header/header.component';
 import { CreateIvrComponent } from './create-ivr/create-ivr.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CreateIvrComponent } from './create-ivr/create-ivr.component';
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
     MainPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,

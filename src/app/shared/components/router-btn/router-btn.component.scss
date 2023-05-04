@@ -1,0 +1,14 @@
+.btn {
+  display: inline-block;
+  padding: 8px 20px;
+  margin: 15px 0;
+  background-color: var(--blue-btn-bg);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--blue--hover-btn-bg);
+    transition: background-color 150ms ease-out;
+  }
+}
