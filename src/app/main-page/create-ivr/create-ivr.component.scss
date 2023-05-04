@@ -26,11 +26,17 @@
 
   &__subtitle {
     padding: 10px 0;
-    font-weight: 300;
   }
 
   &__form-field {
     width: 100%;
+  }
+
+  &__next-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
   }
 }
 
