@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./styles/typography.scss";
+@import "./styles/variables.scss";
+
+body {
+  font-family: Roboto;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

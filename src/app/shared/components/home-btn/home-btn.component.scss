@@ -1,0 +1,21 @@
+.home-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  gap: 15px;
+  border-radius: 4px;
+  max-width: fit-content;
+  color: var(--black);
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--light-gray-bg);
+    transition: background-color 150ms ease-out;
+  }
+
+  &__svg {
+    stroke: var(--black);
+    width: 24px;
+    height: 24px;
+  }
+}
