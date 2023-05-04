@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page.component';
 import { HomeComponent } from './home/home.component';
+import { CreateIvrComponent } from './create-ivr/create-ivr.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     component: MainPageComponent,
     children: [
       {
+        path: 'create',
+        component: CreateIvrComponent,
+      },
+      {
         path: '',
-        pathMatch: 'full',
         component: HomeComponent,
       },
     ],

@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <a routerLink="/" class="link-home">Go back</a>
+  <h2 class="ivr__title">Добавить IVR</h2>
+  <form class="ivr__form">
+    <div class="ivr__input">
+      <h3 class="ivr__subtitle">Название IVR</h3>
+      <mat-form-field class="ivr__form-field">
+        <mat-label>Введите название IVR...</mat-label>
+        <input required matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="ivr__input">
+      <h3 class="ivr__subtitle">Приветствие</h3>
+      <mat-form-field class="ivr__form-field">
+        <mat-label>Выберите аудиофайл</mat-label>
+        <mat-select>
+          <mat-option value="audiofile1.wav"> Аудиофайл 1 </mat-option>
+          <mat-option value="audiofile2.wav"> Аудиофайл 2 </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="ivr__select">
+      <h3 class="ivr__subtitle">Описание</h3>
+      <mat-form-field class="ivr__form-field_description">
+        <input matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="ivr__input">
+      <h3 class="ivr__subtitle">Таймаут</h3>
+      <mat-form-field class="ivr__form-field">
+        <input matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="ivr__input">
+      <h3 class="ivr__subtitle">Неудачных попыток</h3>
+      <mat-form-field class="ivr__form-field">
+        <input matInput />
+      </mat-form-field>
+    </div>
+  </form>
+</div>
