@@ -1,35 +1,23 @@
 .ivr {
   &__form {
     padding: 0 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "input-1 input-2"
-      "select select"
-      "input-3 input-4";
-    gap: 20px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 2%;
+  }
+
+  &__input,
+  &__select {
+    min-width: 100%;
   }
 
   &__input {
-    &:nth-of-type(1) {
-      grid-area: input-1;
+    &:nth-last-child(-n + 2) {
+      min-width: 49%;
+      max-width: 49%;
     }
-
-    &:nth-of-type(2) {
-      grid-area: input-2;
-    }
-
-    &:nth-of-type(3) {
-      grid-area: input-3;
-    }
-
-    &:nth-of-type(4) {
-      grid-area: input-4;
-    }
-  }
-
-  &__select {
-    grid-area: select;
   }
 
   &__title {
@@ -42,10 +30,37 @@
   }
 
   &__form-field {
-    min-width: 100%;
+    width: 100%;
+  }
+}
 
-    &_description {
-      min-width: 100%;
+@media (min-width: 768px) {
+  .ivr {
+    &__input {
+      &:nth-last-child(-n + 2) {
+        min-width: 100%;
+        max-width: none;
+      }
+
+      @for $i from 1 through 4 {
+        &:nth-of-type(#{$i}) {
+          grid-area: input-#{$i};
+        }
+      }
+    }
+
+    &__select {
+      grid-area: select;
+    }
+
+    &__form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "input-1 input-2"
+        "select select"
+        "input-3 input-4";
+      gap: 20px 50px;
     }
   }
 }
