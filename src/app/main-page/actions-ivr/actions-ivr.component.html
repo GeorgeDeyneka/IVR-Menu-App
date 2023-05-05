@@ -1,91 +1,10 @@
-<h2 class="actions__title">Add actions</h2>
+<h2 class="title">Add actions</h2>
 
-<div class="actions__wrapper">
-  <form class="actions__form">
-    <div class="actions__select">
-      <h3 class="actions__subtitle">Button</h3>
-      <mat-form-field class="actions__form-field">
-        <mat-select value="invalid">
-          <mat-option value="invalid"> Invalid </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="actions__status-wrapper">
-      <div class="actions__select">
-        <h3 class="actions__subtitle">Action</h3>
-        <mat-form-field class="actions__form-field">
-          <mat-select value="play-audio">
-            <mat-option value="play-audio"> play-audio </mat-option>
-            <mat-option value="queue"> queue </mat-option>
-            <mat-option value="extension"> extension </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div class="actions__select">
-        <mat-form-field class="actions__form-field">
-          <mat-select value="invalid">
-            <mat-option value="invalid"> Invalid </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <!-- Make it with ngFor!!! -->
-      <!-- Separate it for other components! -->
-
-      <div class="actions__select">
-        <h3 class="actions__subtitle">Set status</h3>
-        <mat-form-field class="actions__form-field">
-          <mat-select value="empty">
-            <mat-option value="empty"></mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
-
-  <form class="actions__form">
-    <div class="actions__select">
-      <h3 class="actions__subtitle">Button</h3>
-      <mat-form-field class="actions__form-field">
-        <mat-select value="invalid">
-          <mat-option value="timeout"> Timeout </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-
-    <div class="actions__status-wrapper">
-      <div class="actions__select">
-        <h3 class="actions__subtitle">Action</h3>
-        <mat-form-field class="actions__form-field">
-          <mat-select value="play-audio">
-            <mat-option value="play-audio"> play-audio </mat-option>
-            <mat-option value="queue"> queue </mat-option>
-            <mat-option value="extension"> extension </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div class="actions__select">
-        <mat-form-field class="actions__form-field">
-          <mat-select value="timeout">
-            <mat-option value="timeout"> Timeout </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <!-- Make it with ngFor!!! -->
-      <!-- Separate it for other components! -->
-
-      <div class="actions__select">
-        <h3 class="actions__subtitle">Set status</h3>
-        <mat-form-field class="actions__form-field">
-          <mat-select value="empty">
-            <mat-option value="empty"></mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
+<div class="wrapper">
+  <app-actions-table
+    *ngFor="let dataItem of formDataArr"
+    [formData]="dataItem"
+  ></app-actions-table>
 </div>
+
+<app-home-btn></app-home-btn>
