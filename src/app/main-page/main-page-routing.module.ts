@@ -4,6 +4,7 @@ import { MainPageComponent } from './main-page.component';
 import { HomeComponent } from './home/home.component';
 import { CreateIvrComponent } from './create-ivr/create-ivr.component';
 import { ActionsIvrComponent } from './actions-ivr/actions-ivr.component';
+import { IvrCreatedGuard } from '../shared/guards/ivr-created.guard';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       },
       {
         path: 'actions-page',
+        canActivate: [IvrCreatedGuard],
         component: ActionsIvrComponent,
       },
       {

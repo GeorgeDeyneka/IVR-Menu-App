@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
+import { CheckValidService } from 'src/app/shared/services/check-valid.service';
 
 @Component({
   selector: 'app-create-ivr',
@@ -18,15 +19,26 @@ export class CreateIvrComponent implements OnInit {
   private ivrData: any;
   public nextBtnDisabled: boolean = true;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private checkValidService: CheckValidService
+  ) {}
 
   setFormActive() {
     this.ivrFormSubj$ = this.ivrForm.valueChanges
       .pipe(debounceTime(250))
       .subscribe((data) => {
         this.ivrData = data;
-        this.nextBtnDisabled = this.ivrForm.valid ? false : true;
+        this.checkValid();
       });
+  }
+
+  checkValid() {
+    this.nextBtnDisabled = !this.checkValidService.checkValid(
+      this.ivrForm.valid
+    );
+
+    if (!this.nextBtnDisabled) this.checkValidService.isCanActivate(true);
   }
 
   ngOnInit(): void {
@@ -42,12 +54,13 @@ export class CreateIvrComponent implements OnInit {
   }
 
   // Add invalid messages
-  // Add Guard on actions-page
   // Add localStorage service
   // Add page for created menus
+  // Change color for disabled button
 
   submitForm() {
-    if (this.ivrForm.valid) {
+    if (this.checkValidService.isFormValid) {
+      this.checkValidService.isCanActivate(true);
       const formValue = this.ivrForm.value;
       const timeout = Number(this.ivrData?.timeout) || 0;
       const invalidRetries = Number(this.ivrData?.invalidRetries) || 0;
