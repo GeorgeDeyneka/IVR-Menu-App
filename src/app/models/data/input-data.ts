@@ -3,6 +3,7 @@ import { ActionsFormData } from '../interfaces/Actions.interface';
 const BASE_SELECT: Array<ActionsFormData> = [
   {
     title: 'Action',
+    formControlName: 'matchedAction',
     values: [
       {
         value: 'play-audio',
@@ -20,6 +21,7 @@ const BASE_SELECT: Array<ActionsFormData> = [
   },
   {
     title: 'Play On',
+    formControlName: 'matchedData',
     values: [
       {
         value: 'invalid',
@@ -29,6 +31,7 @@ const BASE_SELECT: Array<ActionsFormData> = [
   },
   {
     title: 'Set status',
+    formControlName: 'leadStatus',
     values: [
       {
         value: 'disabled',
@@ -45,6 +48,7 @@ const BASE_SELECT: Array<ActionsFormData> = [
 const FORM_DATA_INVALID: Array<ActionsFormData> = [
   {
     title: 'Button',
+    formControlName: 'name',
     values: [
       {
         value: 'invalid',
@@ -58,6 +62,7 @@ const FORM_DATA_INVALID: Array<ActionsFormData> = [
 const FORM_DATA_TIMEOUT: Array<ActionsFormData> = [
   {
     title: 'Button',
+    formControlName: 'name',
     values: [
       {
         value: 'timeout',

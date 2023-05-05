@@ -1,8 +1,8 @@
-<form class="actions__form">
+<form class="actions__form" [formGroup]="actionsForm">
   <div class="actions__select select" *ngFor="let select of formData">
     <h3 class="select__subtitle">{{ select.title }}</h3>
     <mat-form-field class="select__form-field">
-      <mat-select [value]="select.values[0].value">
+      <mat-select [formControlName]="select.formControlName">
         <mat-option *ngFor="let option of select.values" [value]="option.value">
           {{ option.name }}
         </mat-option>

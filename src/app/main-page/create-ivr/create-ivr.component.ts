@@ -89,11 +89,13 @@ export class CreateIvrComponent implements OnInit {
   }
 
   convertIvrData() {
+    const id = Math.floor(Math.random() * 10000);
     const formValue = this.ivrForm.value;
+    const ivrEntityList: any[] = [];
     const timeout = Number(this.ivrInputData?.timeout) || 0;
     const invalidRetries = Number(this.ivrInputData?.invalidRetries) || 0;
 
-    this.ivrClearData = { ...formValue, timeout, invalidRetries };
+    this.ivrClearData = { ...formValue, timeout, invalidRetries, ivrEntityList, id };
   }
 
   setActivateAndRedirect() {

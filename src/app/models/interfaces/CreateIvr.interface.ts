@@ -1,4 +1,5 @@
 export interface CreateFormObject extends CommonFormFields {
+  id: number;
   timeout: number;
   invalidRetries: number;
 }

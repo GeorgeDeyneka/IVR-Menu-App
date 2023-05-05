@@ -2,7 +2,12 @@
 
 <div class="wrapper">
   <app-actions-table
+    #actionsTable
     *ngFor="let dataItem of formDataArr"
     [formData]="dataItem"
-  ></app-actions-table>
+    ></app-actions-table>
+</div>
+
+<div class="create-btn">
+  <app-simple-btn (click)="createMenu()" text="Create Menu"></app-simple-btn>
 </div>
