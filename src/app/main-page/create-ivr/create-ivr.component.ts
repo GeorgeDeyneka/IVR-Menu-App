@@ -72,9 +72,8 @@ export class CreateIvrComponent implements OnInit {
     );
   }
 
-  // Add invalid messages
   // Add page for created menus
-  // Think about refactoring
+  // Make refactoring in ts & html
 
   submitForm() {
     if (this.checkValidService.isFormValid) {
