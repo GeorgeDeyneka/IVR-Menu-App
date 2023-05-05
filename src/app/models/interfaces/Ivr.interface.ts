@@ -1,10 +1,6 @@
-export interface Ivr {
-  id: number;
-  name: string;
-  description: string;
-  announcement: string;
-  timeout: number;
-  invalidRetries: number;
+import { CreateFormObject } from './CreateIvr.interface';
+
+export interface Ivr extends CreateFormObject {
   appendInvalidRetryRecording: boolean;
   appendAnnouncementToTimeout: boolean;
   timeoutRetries: number;
@@ -15,10 +11,10 @@ export interface Ivr {
 }
 
 interface IvrEntity {
- id: number;
- name: string;
- matchedAction: string;
- matchedData: string;
- ivrId: number;
- leadStatus: string;
+  id: number;
+  name: string;
+  matchedAction: string;
+  matchedData: string;
+  ivrId: number;
+  leadStatus: string;
 }

@@ -5,8 +5,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription, debounceTime } from 'rxjs';
+import { CreateFormObject, CreateFormValues } from 'src/app/models/interfaces/CreateIvr.interface';
 import { CheckValidService } from 'src/app/shared/services/check-valid.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-create-ivr',
@@ -16,20 +19,50 @@ import { CheckValidService } from 'src/app/shared/services/check-valid.service';
 export class CreateIvrComponent implements OnInit {
   public ivrForm: FormGroup;
   public ivrFormSubj$: Subscription;
-  private ivrData: any;
   public nextBtnDisabled: boolean = true;
+  private ivrClearData: CreateFormObject;
+  private ivrInputData: CreateFormValues | null =
+    this.localStorageService.getData('ivrInputData');
 
   constructor(
     private fb: FormBuilder,
-    private checkValidService: CheckValidService
+    private router: Router,
+    private checkValidService: CheckValidService,
+    private localStorageService: LocalStorageService
   ) {}
 
-  setFormActive() {
+  ngOnInit(): void {
+    this.ivrForm = this.fb.group({
+      name: new FormControl(this.ivrInputData?.name || '', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      timeout: new FormControl(
+        this.ivrInputData?.timeout || '',
+        Validators.pattern(/^\d+$/)
+      ),
+      invalidRetries: new FormControl(
+        this.ivrInputData?.invalidRetries || '',
+        Validators.pattern(/^\d+$/)
+      ),
+      announcement: new FormControl(this.ivrInputData?.announcement || ''),
+      description: new FormControl(this.ivrInputData?.description || ''),
+    });
+
+    this.checkValid();
+    this.makeFormActive();
+  }
+
+  makeFormActive() {
     this.ivrFormSubj$ = this.ivrForm.valueChanges
       .pipe(debounceTime(250))
       .subscribe((data) => {
-        this.ivrData = data;
+        this.ivrInputData = data;
         this.checkValid();
+        this.localStorageService.setData<CreateFormValues>(
+          'ivrInputData',
+          this.ivrInputData!
+        );
       });
   }
 
@@ -37,36 +70,36 @@ export class CreateIvrComponent implements OnInit {
     this.nextBtnDisabled = !this.checkValidService.checkValid(
       this.ivrForm.valid
     );
-
-    if (!this.nextBtnDisabled) this.checkValidService.isCanActivate(true);
-  }
-
-  ngOnInit(): void {
-    this.ivrForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      timeout: new FormControl('', Validators.pattern(/^\d+$/)),
-      invalidRetries: new FormControl(''),
-      announcement: new FormControl(''),
-      description: new FormControl(''),
-    });
-
-    this.setFormActive();
   }
 
   // Add invalid messages
-  // Add localStorage service
   // Add page for created menus
-  // Change color for disabled button
+  // Think about refactoring
 
   submitForm() {
     if (this.checkValidService.isFormValid) {
-      this.checkValidService.isCanActivate(true);
-      const formValue = this.ivrForm.value;
-      const timeout = Number(this.ivrData?.timeout) || 0;
-      const invalidRetries = Number(this.ivrData?.invalidRetries) || 0;
+      this.convertIvrData();
+      this.localStorageService.setData<CreateFormObject>(
+        'ivrClearData',
+        this.ivrClearData
+      );
 
-      this.ivrData = { ...formValue, timeout, invalidRetries };
+      this.localStorageService.removeData('ivrInputData');
+      this.setActivateAndRedirect();
     }
+  }
+
+  convertIvrData() {
+    const formValue = this.ivrForm.value;
+    const timeout = Number(this.ivrInputData?.timeout) || 0;
+    const invalidRetries = Number(this.ivrInputData?.invalidRetries) || 0;
+
+    this.ivrClearData = { ...formValue, timeout, invalidRetries };
+  }
+
+  setActivateAndRedirect() {
+    this.checkValidService.isCanActivate(true);
+    this.router.navigateByUrl('/actions-page');
   }
 
   ngOnDestroy(): void {

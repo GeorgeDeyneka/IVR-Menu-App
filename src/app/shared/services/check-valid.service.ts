@@ -10,7 +10,7 @@ export class CheckValidService {
   constructor() {}
 
   checkValid(status: boolean) {
-    return (this.isFormValid = status ? true : false);
+    return (this.isFormValid = status);
   }
 
   isCanActivate(status: boolean) {
