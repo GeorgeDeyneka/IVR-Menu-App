@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './shared/services/local-storage.service';
-import { Ivr } from './models/interfaces/Ivr.interface';
+import { Ivr, IvrEntity } from './models/interfaces/Ivr.interface';
 import { BehaviorSubject } from 'rxjs';
+import {
+  CreateFormObject,
+  CreateFormValues,
+} from './models/interfaces/CreateIvr.interface';
+import { ActionsFormValues } from './models/interfaces/Actions.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,19 +31,41 @@ export class IvrAddService {
     this.subj$.next(this.arrIvrs);
   }
 
-  // convertIvrData() {
-  //   const id = Math.floor(Math.random() * 10000);
-  //   const formValue = this.ivrForm.value;
-  //   const ivrEntityList: any[] = [];
-  //   const timeout = Number(this.ivrInputData?.timeout) || 0;
-  //   const invalidRetries = Number(this.ivrInputData?.invalidRetries) || 0;
+  generateRandomId() {
+    return Math.floor(Math.random() * 10000);
+  }
 
-  //   this.ivrClearData = {
-  //     ...formValue,
-  //     timeout,
-  //     invalidRetries,
-  //     ivrEntityList,
-  //     id,
-  //   };
-  // }
+  convertIvrCreateData(formValue: CreateFormValues) {
+    const id = this.generateRandomId();
+    const ivrEntityList: IvrEntity[] = [];
+    const timeout = Number(formValue.timeout) || 0;
+    const invalidRetries = Number(formValue.invalidRetries) || 0;
+
+    return {
+      ...formValue,
+      timeout,
+      invalidRetries,
+      ivrEntityList,
+      id,
+    };
+  }
+
+  convertIvrActionsData(
+    convertable: CreateFormObject,
+    formValues: ActionsFormValues[]
+  ) {
+    const id = this.generateRandomId();
+    const listArr: IvrEntity[] = formValues.map((el) => {
+      return {
+        ...el,
+        ivrId: convertable.id,
+        id,
+      };
+    });
+
+    return {
+      ...convertable,
+      ivrEntityList: listArr,
+    };
+  }
 }

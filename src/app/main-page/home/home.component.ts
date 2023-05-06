@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.ivrsSubj$ = this.ivrAddService.subj$.subscribe((data) => {
       this.arrIvrs = data;
-      console.log(this.arrIvrs);
     });
   }
 

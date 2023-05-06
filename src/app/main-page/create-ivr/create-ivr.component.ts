@@ -7,7 +7,11 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription, debounceTime } from 'rxjs';
-import { CreateFormObject, CreateFormValues } from 'src/app/models/interfaces/CreateIvr.interface';
+import { IvrAddService } from 'src/app/ivr-add.service';
+import {
+  CreateFormObject,
+  CreateFormValues,
+} from 'src/app/models/interfaces/CreateIvr.interface';
 import { CheckValidService } from 'src/app/shared/services/check-valid.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -28,10 +32,17 @@ export class CreateIvrComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private checkValidService: CheckValidService,
+    private ivrAddService: IvrAddService,
     private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
+    this.checkValid();
+    this.makeFormActive();
+  }
+
+  initForm() {
     this.ivrForm = this.fb.group({
       name: new FormControl(this.ivrInputData?.name || '', [
         Validators.required,
@@ -48,9 +59,6 @@ export class CreateIvrComponent implements OnInit {
       announcement: new FormControl(this.ivrInputData?.announcement || ''),
       description: new FormControl(this.ivrInputData?.description || ''),
     });
-
-    this.checkValid();
-    this.makeFormActive();
   }
 
   makeFormActive() {
@@ -86,13 +94,9 @@ export class CreateIvrComponent implements OnInit {
   }
 
   convertIvrData() {
-    const id = Math.floor(Math.random() * 10000);
-    const formValue = this.ivrForm.value;
-    const ivrEntityList: any[] = [];
-    const timeout = Number(this.ivrInputData?.timeout) || 0;
-    const invalidRetries = Number(this.ivrInputData?.invalidRetries) || 0;
-
-    this.ivrClearData = { ...formValue, timeout, invalidRetries, ivrEntityList, id };
+    this.ivrClearData = this.ivrAddService.convertIvrCreateData(
+      this.ivrForm.value
+    );
   }
 
   setActivateAndRedirect() {

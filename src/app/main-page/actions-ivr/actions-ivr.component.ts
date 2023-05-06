@@ -1,6 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FORM_DATA } from 'src/app/models/data/input-data';
-import { ActionsFormData } from 'src/app/models/interfaces/Actions.interface';
+import { ActionsFormData, ActionsFormValues } from 'src/app/models/interfaces/Actions.interface';
 import { ActionsTableComponent } from './actions-table/actions-table.component';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
@@ -35,28 +35,15 @@ export class ActionsIvrComponent {
   convertIvrData() {
     const ivrMenu: CreateFormObject =
       this.localStorageService.getData('ivrClearData')!;
+    const arrList: ActionsFormValues[] = [];
 
-    this.convertEntityItem(ivrMenu.id);
-    this.convertIvrMenu(ivrMenu);
-  }
-
-  convertEntityItem(ivrId: Number) {
     this.actionsTableComponents.forEach((component) => {
-      const id = Math.floor(Math.random() * 10000);
-      const ivrEntityItem: IvrEntity = {
-        ...component.actionsForm.getRawValue(),
-        ivrId,
-        id,
-      };
-
-      this.ivrEntityList.push(ivrEntityItem);
+      arrList.push(component.actionsForm.getRawValue());
     });
-  }
 
-  convertIvrMenu(ivrMenu: CreateFormObject) {
-    this.fullIvrMenu = {
-      ...ivrMenu,
-      ivrEntityList: this.ivrEntityList,
-    };
+    this.fullIvrMenu = this.ivrAddService.convertIvrActionsData(
+      ivrMenu,
+      arrList
+    );
   }
 }
