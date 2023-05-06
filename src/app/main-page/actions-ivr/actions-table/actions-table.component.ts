@@ -1,4 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -15,8 +23,10 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   templateUrl: './actions-table.component.html',
   styleUrls: ['./actions-table.component.scss'],
 })
-export class ActionsTableComponent implements OnInit {
+export class ActionsTableComponent implements OnInit, OnChanges {
   @Input() formData: Array<ActionsFormData>;
+  @Input() emitClick: boolean = false;
+  @Output() actionsFormValues = new EventEmitter();
   public actionsForm: FormGroup;
   public actionsFormSubj$: Subscription;
   public actionsInputData: ActionsFormData;
@@ -59,5 +69,11 @@ export class ActionsTableComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.actionsFormSubj$.unsubscribe();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.emitClick) {
+      this.actionsFormValues.emit(this.actionsInputData);
+    }
   }
 }

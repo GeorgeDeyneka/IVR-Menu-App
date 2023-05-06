@@ -4,10 +4,12 @@
   <app-actions-table
     #actionsTable
     *ngFor="let dataItem of formDataArr"
+    [emitClick]="emitClick"
     [formData]="dataItem"
-    ></app-actions-table>
+    (actionsFormValues)="getDataFromChild($event)"
+  ></app-actions-table>
 </div>
 
 <div class="create-btn">
-  <app-simple-btn (click)="createMenu()" text="Create Menu"></app-simple-btn>
+  <app-simple-btn (click)="clickEmit()" text="Create Menu"></app-simple-btn>
 </div>

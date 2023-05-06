@@ -17,11 +17,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./actions-ivr.component.scss'],
 })
 export class ActionsIvrComponent {
-  @ViewChildren('actionsTable')
-  actionsTableComponents: QueryList<ActionsTableComponent>;
+  public emitClick: boolean = false;
   public formDataArr: Array<ActionsFormData[]> = FORM_DATA;
-  public ivrEntityList: IvrEntity[] = [];
+  public ivrEntityList: ActionsFormValues[] = [];
   public fullIvrMenu: Ivr;
+  public i: number = FORM_DATA.length;
 
   constructor(
     private localStorageService: LocalStorageService,
@@ -29,25 +29,29 @@ export class ActionsIvrComponent {
     private router: Router
   ) {}
 
-  createMenu() {
-    this.convertIvrData();
-    this.ivrAddService.addNewIvr(this.fullIvrMenu);
-    this.localStorageService.removeData('ivrClearData')!;
-    this.router.navigateByUrl('/');
+  clickEmit() {
+    this.emitClick = true;
+  }
+
+  getDataFromChild(event: any) {
+    this.i--;
+    this.ivrEntityList.push(event);
+
+    if (!this.i) {
+      this.convertIvrData();
+      this.ivrAddService.addNewIvr(this.fullIvrMenu);
+      this.localStorageService.removeData('ivrClearData')!;
+      this.router.navigateByUrl('/');
+    }
   }
 
   convertIvrData() {
     const ivrMenu: CreateFormObject =
       this.localStorageService.getData('ivrClearData')!;
-    const arrList: ActionsFormValues[] = [];
-
-    this.actionsTableComponents.forEach((component) => {
-      arrList.push(component.actionsForm.getRawValue());
-    });
 
     this.fullIvrMenu = this.ivrAddService.convertIvrActionsData(
       ivrMenu,
-      arrList
+      this.ivrEntityList
     );
   }
 }
