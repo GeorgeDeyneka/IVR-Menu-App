@@ -1,6 +1,9 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { FORM_DATA } from 'src/app/models/data/input-data';
-import { ActionsFormData, ActionsFormValues } from 'src/app/models/interfaces/Actions.interface';
+import {
+  ActionsFormData,
+  ActionsFormValues,
+} from 'src/app/models/interfaces/Actions.interface';
 import { ActionsTableComponent } from './actions-table/actions-table.component';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
@@ -29,6 +32,7 @@ export class ActionsIvrComponent {
   createMenu() {
     this.convertIvrData();
     this.ivrAddService.addNewIvr(this.fullIvrMenu);
+    this.localStorageService.removeData('ivrClearData')!;
     this.router.navigateByUrl('/');
   }
 

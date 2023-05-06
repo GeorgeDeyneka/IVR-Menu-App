@@ -12,6 +12,8 @@ import { CreateIvrComponent } from './create-ivr/create-ivr.component';
 import { SharedModule } from '../shared/shared.module';
 import { ActionsIvrComponent } from './actions-ivr/actions-ivr.component';
 import { ActionsTableComponent } from './actions-ivr/actions-table/actions-table.component';
+import { ListIvrComponent } from './list-ivr/list-ivr.component';
+import { ItemIvrDetailsComponent } from './item-ivr-details/item-ivr-details.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ActionsTableComponent } from './actions-ivr/actions-table/actions-table
     CreateIvrComponent,
     ActionsIvrComponent,
     ActionsTableComponent,
+    ListIvrComponent,
+    ItemIvrDetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -21,6 +21,10 @@ export class IvrAddService {
     return this.arrIvrs;
   }
 
+  getItem(id: number) {
+    return this.arrIvrs.find((elem) => elem.id === id);
+  }
+
   addNewIvr(elem: Ivr) {
     this.arrIvrs.push(elem);
     this.localStorageService.setData<Ivr[]>('ivrMenus', this.arrIvrs);

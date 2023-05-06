@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <h2>IVR Menu Details #{{ ivrItem.id }}</h2>
+
+  <div class="details">
+    <ul>
+      <li>Name: {{ ivrItem.name }}</li>
+      <li>Description: {{ ivrItem.description || "none" }}</li>
+      <li>Announcement: {{ ivrItem.announcement || "not selected" }}</li>
+      <li>Timeout: {{ ivrItem.timeout }}</li>
+      <li>Invalid Retries: {{ ivrItem.invalidRetries }}</li>
+    </ul>
+    <h3>Buttons</h3>
+    <ul>
+      <li *ngFor="let button of ivrItem.ivrEntityList">
+        {{ button.name }}
+      </li>
+    </ul>
+  </div>
+</div>
