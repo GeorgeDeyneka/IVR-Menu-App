@@ -20,9 +20,9 @@ export class ItemIvrDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.actRouter.snapshot.paramMap.get('id');
 
-    this.ivrItem = this.ivrAddService.getItem(Number(id))!;
-
-    if (!this.ivrItem) {
+    if (id !== null && this.ivrAddService.getItem(+id)) {
+      this.ivrItem = this.ivrAddService.getItem(+id)!;
+    } else {
       this.router.navigateByUrl('/404-page');
     }
   }
