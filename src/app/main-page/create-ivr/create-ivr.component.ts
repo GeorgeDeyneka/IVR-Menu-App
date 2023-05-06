@@ -72,9 +72,6 @@ export class CreateIvrComponent implements OnInit {
     );
   }
 
-  // Add page for created menus
-  // Make refactoring in ts & html
-
   submitForm() {
     if (this.checkValidService.isFormValid) {
       this.convertIvrData();

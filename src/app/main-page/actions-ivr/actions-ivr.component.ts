@@ -5,6 +5,8 @@ import { ActionsTableComponent } from './actions-table/actions-table.component';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
 import { Ivr, IvrEntity } from 'src/app/models/interfaces/Ivr.interface';
+import { IvrAddService } from 'src/app/ivr-add.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actions-ivr',
@@ -18,10 +20,16 @@ export class ActionsIvrComponent {
   public ivrEntityList: IvrEntity[] = [];
   public fullIvrMenu: Ivr;
 
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private ivrAddService: IvrAddService,
+    private router: Router
+  ) {}
 
   createMenu() {
     this.convertIvrData();
+    this.ivrAddService.addNewIvr(this.fullIvrMenu);
+    this.router.navigateByUrl('/');
   }
 
   convertIvrData() {
