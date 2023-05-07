@@ -14,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
-import { ActionsFormData } from 'src/app/models/interfaces/Actions.interface';
+import { ActionsFormData, ActionsTableData } from 'src/app/models/interfaces/Actions.interface';
 import { CheckValidService } from 'src/app/shared/services/check-valid.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -24,7 +24,7 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   styleUrls: ['./actions-table.component.scss'],
 })
 export class ActionsTableComponent implements OnInit, OnChanges {
-  @Input() formData: Array<ActionsFormData>;
+  @Input() formData: ActionsTableData;
   @Input() emitClick: boolean = false;
   @Output() actionsFormValues = new EventEmitter();
   public actionsForm: FormGroup;
@@ -38,7 +38,7 @@ export class ActionsTableComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    const formControls = this.formData.reduce(
+    const formControls = this.formData.data.reduce(
       (acc: any, elem: ActionsFormData) => {
         acc[elem.formControlName] = new FormControl(
           elem.values[0].value,

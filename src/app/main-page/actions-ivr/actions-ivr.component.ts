@@ -3,6 +3,7 @@ import { FORM_DATA } from 'src/app/models/data/input-data';
 import {
   ActionsFormData,
   ActionsFormValues,
+  ActionsTableData,
 } from 'src/app/models/interfaces/Actions.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 })
 export class ActionsIvrComponent {
   public emitClick: boolean = false;
-  public formDataArr: Array<ActionsFormData[]> = FORM_DATA;
+  public formDataArr: Array<ActionsTableData> = FORM_DATA;
   public ivrEntityList: ActionsFormValues[] = [];
   public fullIvrMenu: Ivr;
   public buttonsCount: number = this.formDataArr.length;

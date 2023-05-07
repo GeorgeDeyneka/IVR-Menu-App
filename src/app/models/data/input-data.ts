@@ -1,4 +1,4 @@
-import { ActionsFormData } from '../interfaces/Actions.interface';
+import { ActionsFormData, ActionsTableData } from '../interfaces/Actions.interface';
 
 export const BASE_SELECT: Array<ActionsFormData> = [
   {
@@ -45,35 +45,43 @@ export const BASE_SELECT: Array<ActionsFormData> = [
   },
 ];
 
-const FORM_DATA_INVALID: Array<ActionsFormData> = [
-  {
-    title: 'Button',
-    formControlName: 'name',
-    values: [
-      {
-        value: 'invalid',
-        name: 'Invalid',
-      },
-    ],
-  },
-  ...BASE_SELECT,
-];
+const FORM_DATA_INVALID: ActionsTableData = {
+  required: true,
+  id: 2,
+  data: [
+    {
+      title: 'Button',
+      formControlName: 'name',
+      values: [
+        {
+          value: 'invalid',
+          name: 'Invalid',
+        },
+      ],
+    },
+    ...BASE_SELECT,
+  ],
+};
 
-const FORM_DATA_TIMEOUT: Array<ActionsFormData> = [
-  {
-    title: 'Button',
-    formControlName: 'name',
-    values: [
-      {
-        value: 'timeout',
-        name: 'Timeout',
-      },
-    ],
-  },
-  ...BASE_SELECT,
-];
+const FORM_DATA_TIMEOUT: ActionsTableData = {
+  required: true,
+  id: 2,
+  data: [
+    {
+      title: 'Button',
+      formControlName: 'name',
+      values: [
+        {
+          value: 'timeout',
+          name: 'Timeout',
+        },
+      ],
+    },
+    ...BASE_SELECT,
+  ],
+};
 
-export const FORM_DATA: Array<ActionsFormData[]> = [
+export const FORM_DATA: Array<ActionsTableData> = [
   FORM_DATA_INVALID,
   FORM_DATA_TIMEOUT,
 ];

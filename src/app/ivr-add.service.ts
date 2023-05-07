@@ -50,14 +50,18 @@ export class IvrAddService {
       });
     }
 
-    return [
-      {
-        title: 'Button',
-        formControlName: 'name',
-        values,
-      },
-      ...BASE_SELECT,
-    ];
+    return {
+      required: false,
+      id: this.generateRandomId(),
+      data: [
+        {
+          title: 'Button',
+          formControlName: 'name',
+          values,
+        },
+        ...BASE_SELECT,
+      ],
+    };
   }
 
   convertIvrCreateData(formValue: CreateFormValues) {

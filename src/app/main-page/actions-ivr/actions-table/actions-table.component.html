@@ -1,5 +1,5 @@
 <form class="actions__form" [formGroup]="actionsForm">
-  <div class="actions__select select" *ngFor="let select of formData">
+  <div class="actions__select select" *ngFor="let select of formData.data">
     <h3 class="select__subtitle">{{ select.title }}</h3>
     <mat-form-field class="select__form-field">
       <mat-select [formControlName]="select.formControlName">

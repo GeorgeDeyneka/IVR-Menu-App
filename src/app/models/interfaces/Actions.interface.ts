@@ -1,3 +1,9 @@
+export interface ActionsTableData {
+  required: boolean;
+  id: number;
+  data: Array<ActionsFormData>;
+}
+
 export interface ActionsFormData {
   title: string;
   formControlName: string;
