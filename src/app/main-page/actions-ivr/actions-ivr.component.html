@@ -3,9 +3,10 @@
 <div class="wrapper">
   <app-actions-table
     #actionsTable
-    *ngFor="let dataItem of formDataArr"
+    *ngFor="let dataItem of formDataArr; let i = index"
     [emitClick]="emitClick"
     [formData]="dataItem"
+    [componentIndex]="i"
     (actionsFormValues)="getDataFromChild($event)"
   ></app-actions-table>
 </div>

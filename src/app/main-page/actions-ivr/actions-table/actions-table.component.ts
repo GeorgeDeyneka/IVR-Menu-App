@@ -29,7 +29,9 @@ import { IvrActionsService } from 'src/app/shared/services/ivr-actions.service';
 export class ActionsTableComponent implements OnInit, OnChanges {
   @Input() formData: ActionsTableData;
   @Input() emitClick: boolean = false;
+  @Input() componentIndex: number;
   @Output() actionsFormValues = new EventEmitter();
+
   public actionsForm: FormGroup;
   public actionsFormSubj$: Subscription;
   public actionsInputData: ActionsFormData;
@@ -49,8 +51,13 @@ export class ActionsTableComponent implements OnInit, OnChanges {
   initForm() {
     const formControls = this.formData.data.reduce(
       (acc: any, elem: ActionsFormData) => {
+        const startValue =
+          elem.formControlName === 'name' && this.componentIndex >= 2
+            ? elem.values[this.componentIndex - 2].value
+            : elem.values[0].value;
+
         acc[elem.formControlName] = new FormControl(
-          elem.values[0].value,
+          startValue,
           Validators.required
         );
         return acc;
