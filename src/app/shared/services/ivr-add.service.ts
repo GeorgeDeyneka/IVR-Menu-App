@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from './shared/services/local-storage.service';
-import { Ivr, IvrEntity } from './models/interfaces/Ivr.interface';
 import { BehaviorSubject } from 'rxjs';
-import {
-  CreateFormObject,
-  CreateFormValues,
-} from './models/interfaces/CreateIvr.interface';
-import { ActionsFormValues } from './models/interfaces/Actions.interface';
-import { BASE_SELECT } from './models/data/input-data';
+import { Ivr, IvrEntity } from 'src/app/models/interfaces/Ivr.interface';
+import { LocalStorageService } from './local-storage.service';
+import { BASE_SELECT } from 'src/app/models/data/input-data';
+import { CreateFormObject, CreateFormValues } from 'src/app/models/interfaces/CreateIvr.interface';
+import { ActionsFormValues } from 'src/app/models/interfaces/Actions.interface';
+
 
 @Injectable({
   providedIn: 'root',

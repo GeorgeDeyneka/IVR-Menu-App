@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FORM_DATA } from 'src/app/models/data/input-data';
 import {
-  ActionsFormData,
   ActionsFormValues,
   ActionsTableData,
 } from 'src/app/models/interfaces/Actions.interface';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
+import { IvrAddService } from 'src/app/shared/services/ivr-add.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
 import { Ivr } from 'src/app/models/interfaces/Ivr.interface';
-import { IvrAddService } from 'src/app/ivr-add.service';
 import { Router } from '@angular/router';
 
 @Component({

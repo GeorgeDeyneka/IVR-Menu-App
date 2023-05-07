@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IvrAddService } from 'src/app/ivr-add.service';
 import { BUTTON_DATA_LABELS, IVR_DATA_LABELS } from 'src/app/models/data/label-data';
 import { Ivr } from 'src/app/models/interfaces/Ivr.interface';
+import { IvrAddService } from 'src/app/shared/services/ivr-add.service';
 
 @Component({
   selector: 'app-item-ivr-details',

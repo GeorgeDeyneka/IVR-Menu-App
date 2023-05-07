@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IvrAddService } from 'src/app/ivr-add.service';
 import { Ivr } from 'src/app/models/interfaces/Ivr.interface';
+import { IvrAddService } from 'src/app/shared/services/ivr-add.service';
 
 @Component({
   selector: 'app-list-ivr',

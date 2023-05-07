@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IvrAddService } from 'src/app/ivr-add.service';
+import { IvrAddService } from 'src/app/shared/services/ivr-add.service';
 
 @Component({
   selector: 'app-home',
