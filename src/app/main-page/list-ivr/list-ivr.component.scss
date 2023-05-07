@@ -1,0 +1,39 @@
+@import "src/styles/mixins.scss";
+
+.wrapper {
+  padding-top: 60px;
+}
+
+h3 > strong {
+  font-weight: 400;
+}
+
+.ivr {
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__link {
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    text-decoration: none;
+    color: var(--black);
+  }
+
+  &__item {
+    background-color: #dbdbd9;
+    max-width: 700px;
+    border-radius: 4px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__name {
+    max-width: 300px;
+    @include ellipsis;
+  }
+}

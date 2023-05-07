@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <h2>Created IVR menus (click on menu to learn more):</h2>
+
+  <ul class="ivr__list" *ngIf="arrIvrs.length">
+    <li class="ivr__item" *ngFor="let ivr of arrIvrs">
+      <a class="ivr__link" [routerLink]="['/', ivr.id]">
+        <h3 class="ivr__name">
+          Name: <strong>{{ ivr.name }}</strong>
+        </h3>
+        <h3>
+          ID: <strong>{{ ivr.id }}</strong>
+        </h3>
+      </a>
+    </li>
+  </ul>
+</div>

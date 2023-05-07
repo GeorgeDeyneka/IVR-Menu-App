@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 100px;
+  text-align: center;
+
+  &__title {
+    font-size: 80px;
+    font-weight: 300;
+  }
+
+  &__paragraph {
+    font-size: 20px;
+  }
+}

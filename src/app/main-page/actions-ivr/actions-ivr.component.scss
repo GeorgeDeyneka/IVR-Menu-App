@@ -1,29 +1,25 @@
-.actions {
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 60px;
-    padding: 0 10px;
-  }
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 60px;
+  padding: 0 10px;
+}
 
-  &__title {
-    padding: 20px 10px;
-  }
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 
-  &__form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
+.title {
+  padding: 20px 10px;
 }
 
 @media (min-width: 768px) {
-  .actions {
-    &__wrapper {
-      flex-direction: row;
-      gap: 20px;
-    }
+  .wrapper {
+    flex-direction: row;
   }
 }

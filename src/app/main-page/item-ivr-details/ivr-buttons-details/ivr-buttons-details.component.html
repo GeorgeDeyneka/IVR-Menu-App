@@ -1,0 +1,14 @@
+    <h3>Buttons</h3>
+    <ul class="button-data__list">
+      <li
+        class="button-data__item"
+        *ngFor="let button of ivrItem.ivrEntityList"
+      >
+        <ng-container *ngFor="let elem of buttonLabels">
+          <div>
+            {{ elem.label }}:
+            <p>{{ button[elem.prop] }}</p>
+          </div>
+        </ng-container>
+      </li>
+    </ul>

@@ -1,0 +1,19 @@
+<div *ngIf="ivrItem" class="wrapper">
+  <h2>IVR Menu Details #{{ ivrItem.id }}</h2>
+
+  <div class="details">
+    <ul class="details__list">
+      <li *ngFor="let elem of menuLabels" class="details__item">
+        {{ elem.label }}:
+        <p>{{ ivrItem[elem.prop] === "" ? "none" : ivrItem[elem.prop] }}</p>
+      </li>
+    </ul>
+
+    <app-ivr-buttons-details
+      [buttonLabels]="buttonLabels"
+      [ivrItem]="ivrItem"
+    ></app-ivr-buttons-details>
+  </div>
+
+  <app-home-btn></app-home-btn>
+</div>
