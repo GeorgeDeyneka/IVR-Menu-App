@@ -14,9 +14,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Subscription, debounceTime } from 'rxjs';
-import { ActionsFormData, ActionsTableData } from 'src/app/models/interfaces/Actions.interface';
+import {
+  ActionsFormData,
+  ActionsTableData,
+} from 'src/app/models/interfaces/Actions.interface';
 import { CheckValidService } from 'src/app/shared/services/check-valid.service';
-import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-actions-table',
@@ -33,11 +35,16 @@ export class ActionsTableComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private localStorageService: LocalStorageService,
     private checkValidService: CheckValidService
   ) {}
 
   ngOnInit(): void {
+    this.initForm();
+    this.actionsInputData = this.actionsForm.getRawValue();
+    this.makeFormActive();
+  }
+
+  initForm() {
     const formControls = this.formData.data.reduce(
       (acc: any, elem: ActionsFormData) => {
         acc[elem.formControlName] = new FormControl(
@@ -50,13 +57,9 @@ export class ActionsTableComponent implements OnInit, OnChanges {
     );
 
     this.actionsForm = this.fb.group(formControls);
-    this.actionsInputData = this.actionsForm.getRawValue();
-    this.makeFormActive();
   }
 
-  deleteComponentData() {
-
-  }
+  deleteComponentData() {}
 
   makeFormActive() {
     this.actionsFormSubj$ = this.actionsForm.valueChanges

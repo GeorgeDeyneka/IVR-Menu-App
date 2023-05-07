@@ -47,7 +47,7 @@ export const BASE_SELECT: Array<ActionsFormData> = [
 
 const FORM_DATA_INVALID: ActionsTableData = {
   required: true,
-  id: 2,
+  id: 1,
   data: [
     {
       title: 'Button',

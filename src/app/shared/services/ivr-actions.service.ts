@@ -32,6 +32,12 @@ export class IvrActionsService {
     this.updateSubject();
   }
 
+  resetButtonsData() {
+    this.arrBtns = [...FORM_DATA];
+    this.localStorageService.removeData('btnsFormData');
+    this.updateSubject();
+  }
+
   private updateLocalStorage() {
     this.localStorageService.setData<ActionsTableData[]>(
       'btnsFormData',
