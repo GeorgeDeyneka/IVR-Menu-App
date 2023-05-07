@@ -9,4 +9,9 @@
       </mat-select>
     </mat-form-field>
   </div>
+  <app-simple-btn
+    *ngIf="!formData.required"
+    (click)="deleteComponentData()"
+    text="Delete"
+  ></app-simple-btn>
 </form>

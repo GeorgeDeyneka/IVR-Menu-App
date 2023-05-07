@@ -54,6 +54,10 @@ export class ActionsTableComponent implements OnInit, OnChanges {
     this.makeFormActive();
   }
 
+  deleteComponentData() {
+
+  }
+
   makeFormActive() {
     this.actionsFormSubj$ = this.actionsForm.valueChanges
       .pipe(debounceTime(250))
