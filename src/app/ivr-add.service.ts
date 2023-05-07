@@ -7,6 +7,7 @@ import {
   CreateFormValues,
 } from './models/interfaces/CreateIvr.interface';
 import { ActionsFormValues } from './models/interfaces/Actions.interface';
+import { BASE_SELECT } from './models/data/input-data';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,26 @@ export class IvrAddService {
     return Math.floor(Math.random() * 10000);
   }
 
+  generateActionsButtonData() {
+    const values: any[] = [];
+
+    for (let i = 0; i < 10; i++) {
+      values.push({
+        value: i.toString(),
+        name: i.toString(),
+      });
+    }
+
+    return [
+      {
+        title: 'Button',
+        formControlName: 'name',
+        values,
+      },
+      ...BASE_SELECT,
+    ];
+  }
+
   convertIvrCreateData(formValue: CreateFormValues) {
     const id = this.generateRandomId();
     const ivrEntityList: IvrEntity[] = [];
@@ -58,12 +79,11 @@ export class IvrAddService {
     convertable: CreateFormObject,
     formValues: ActionsFormValues[]
   ) {
-    const id = this.generateRandomId();
     const listArr: IvrEntity[] = formValues.map((el) => {
       return {
         ...el,
         ivrId: convertable.id,
-        id,
+        id: this.generateRandomId(),
       };
     });
 

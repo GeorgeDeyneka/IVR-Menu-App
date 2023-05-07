@@ -1,6 +1,6 @@
 import { ActionsFormData } from '../interfaces/Actions.interface';
 
-const BASE_SELECT: Array<ActionsFormData> = [
+export const BASE_SELECT: Array<ActionsFormData> = [
   {
     title: 'Action',
     formControlName: 'matchedAction',

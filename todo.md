@@ -1,10 +1,9 @@
 # TODOS
-  
-## Easy
-- Make refactoring for create-ivr in ts & html
 
 ## Hard
-- Make adding/deleting for actions buttons (make it through adding data into const)
+- Make deleting, stack value for actions buttons
+- Make modal when form have repeat buttons or all buttons created
+- Change input data object (add id, required & data fields)
 
 ## Before send
 - Ask about some fields in the IVR interface
