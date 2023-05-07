@@ -12,7 +12,7 @@ import { IvrAddService } from 'src/app/shared/services/ivr-add.service';
 import { CreateFormObject } from 'src/app/models/interfaces/CreateIvr.interface';
 import { Ivr } from 'src/app/models/interfaces/Ivr.interface';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { IvrActionsService } from 'src/app/shared/services/ivr-actions.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal/modal.component';
@@ -25,7 +25,7 @@ import { DialogContent } from 'src/app/models/interfaces/DialogContent.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionsIvrComponent {
-  public emitClick: boolean = false;
+  protected emitClick$: Subject<boolean> = new Subject<boolean>();
   public formDataArr: Array<ActionsTableData> = [];
   public ivrEntityList: ActionsFormValues[] = [];
   public fullIvrMenu: Ivr;
@@ -50,26 +50,32 @@ export class ActionsIvrComponent {
   }
 
   clickEmit() {
-    this.emitClick = true;
+    this.emitClick$.next(true);
   }
 
   addButtonForm() {
     if (this.buttonsCount === this.maxButtonsCount) {
-      this.openDialog();
+      this.openDialog(DialogContent.maxCountButtonsTitle);
       return;
     }
     const newButton = this.ivrAddService.generateActionsButtonData();
     this.ivrActionsService.addNewButton(newButton);
   }
 
-  openDialog() {
+  openDialog(content: string) {
     this.dialog.open(ModalComponent, {
       width: '400px',
       height: '280px',
       data: {
-        title: DialogContent.maxCountButtonsTitle,
+        title: content,
       },
     });
+  }
+
+  checkDublicateButtons(arr: ActionsFormValues[]) {
+    return arr.some(
+      (item, index) => arr.findIndex((obj) => obj.name === item.name) !== index
+    );
   }
 
   getDataFromChild(event: ActionsFormValues) {
@@ -77,13 +83,26 @@ export class ActionsIvrComponent {
     this.ivrEntityList.push(event);
 
     if (!this.buttonsCount) {
-      this.convertIvrData();
-      this.ivrActionsService.resetButtonsData();
-      this.cdr.markForCheck();
-      this.ivrAddService.addNewIvr(this.fullIvrMenu);
-      this.localStorageService.removeData('ivrClearData')!;
-      this.router.navigateByUrl('/');
+      if (this.checkDublicateButtons(this.ivrEntityList)) {
+        return this.showModalAndResetList();
+      }
+      return this.createMenuAndRedirect();
     }
+  }
+
+  showModalAndResetList() {
+    this.openDialog(DialogContent.hasDuplicateButton);
+    this.buttonsCount = this.formDataArr.length;
+    this.ivrEntityList = [];
+  }
+
+  createMenuAndRedirect() {
+    this.convertIvrData();
+    this.ivrActionsService.resetButtonsData();
+    this.cdr.markForCheck();
+    this.ivrAddService.addNewIvr(this.fullIvrMenu);
+    this.localStorageService.removeData('ivrClearData')!;
+    this.router.navigateByUrl('/');
   }
 
   convertIvrData() {
@@ -98,5 +117,6 @@ export class ActionsIvrComponent {
 
   ngOnDestroy(): void {
     this.formDataSubj$.unsubscribe();
+    this.emitClick$.unsubscribe();
   }
 }

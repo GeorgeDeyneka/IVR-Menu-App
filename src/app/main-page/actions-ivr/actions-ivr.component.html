@@ -4,7 +4,7 @@
   <app-actions-table
     #actionsTable
     *ngFor="let dataItem of formDataArr; let i = index"
-    [emitClick]="emitClick"
+    [emitClick$]="emitClick$"
     [formData]="dataItem"
     [componentIndex]="i"
     (actionsFormValues)="getDataFromChild($event)"
@@ -13,6 +13,5 @@
 
 <div class="buttons">
   <app-simple-btn (click)="addButtonForm()" text="Add +"></app-simple-btn>
-
   <app-simple-btn (click)="clickEmit()" text="Create Menu"></app-simple-btn>
 </div>
