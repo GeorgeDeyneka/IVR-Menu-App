@@ -17,7 +17,7 @@ export interface ActionsFormValues {
   leadStatus: string;
 }
 
-interface OptionValue {
+export interface OptionValue {
   value: string;
   name: string;
 }

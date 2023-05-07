@@ -23,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'actions-page',
-        // canActivate: [IvrCreatedGuard],
+        canActivate: [IvrCreatedGuard],
         component: ActionsIvrComponent,
       },
       {

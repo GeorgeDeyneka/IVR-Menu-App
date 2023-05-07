@@ -5,7 +5,7 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 20px;
     list-style: none;
   }
 
@@ -27,6 +27,14 @@
       &:not(:last-child) {
         margin-bottom: 10px;
       }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .button-data {
+    &__list {
+      gap: 40px;
     }
   }
 }

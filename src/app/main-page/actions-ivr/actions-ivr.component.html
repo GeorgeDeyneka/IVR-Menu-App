@@ -3,15 +3,15 @@
 <div class="wrapper">
   <app-actions-table
     #actionsTable
-    *ngFor="let dataItem of formDataArr"
-    [emitClick]="emitClick"
+    *ngFor="let dataItem of formDataArr; let i = index"
+    [emitClick$]="emitClick$"
     [formData]="dataItem"
+    [componentIndex]="i"
     (actionsFormValues)="getDataFromChild($event)"
   ></app-actions-table>
 </div>
 
 <div class="buttons">
   <app-simple-btn (click)="addButtonForm()" text="Add +"></app-simple-btn>
-
   <app-simple-btn (click)="clickEmit()" text="Create Menu"></app-simple-btn>
 </div>
