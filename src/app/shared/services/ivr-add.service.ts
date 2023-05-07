@@ -11,7 +11,7 @@ import { ActionsFormValues } from 'src/app/models/interfaces/Actions.interface';
   providedIn: 'root',
 })
 export class IvrAddService {
-  public arrIvrs: Ivr[] = this.localStorageService.getData('ivrMenus') || [];
+  private arrIvrs: Ivr[] = this.localStorageService.getData('ivrMenus') || [];
   public subj$ = new BehaviorSubject<Ivr[]>(this.getData());
 
   constructor(private localStorageService: LocalStorageService) {}
@@ -30,7 +30,7 @@ export class IvrAddService {
     this.updateSubject();
   }
 
-  updateSubject() {
+  private updateSubject() {
     this.subj$.next(this.arrIvrs);
   }
 
