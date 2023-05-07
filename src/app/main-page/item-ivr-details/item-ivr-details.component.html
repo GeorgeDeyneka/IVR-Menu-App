@@ -2,18 +2,62 @@
   <h2>IVR Menu Details #{{ ivrItem.id }}</h2>
 
   <div class="details">
-    <ul>
-      <li>Name: {{ ivrItem.name }}</li>
-      <li>Description: {{ ivrItem.description || "none" }}</li>
-      <li>Announcement: {{ ivrItem.announcement || "not selected" }}</li>
-      <li>Timeout: {{ ivrItem.timeout }}</li>
-      <li>Invalid Retries: {{ ivrItem.invalidRetries }}</li>
+    <ul class="details__list">
+      <li class="details__item">
+        Name:
+        <p>{{ ivrItem.name }}</p>
+      </li>
+      <li class="details__item">
+        Description:
+        <p>{{ ivrItem.description || "none" }}</p>
+      </li>
+      <li class="details__item">
+        Announcement:
+        <p>{{ ivrItem.announcement || "not selected" }}</p>
+      </li>
+      <li class="details__item">
+        Timeout:
+        <p>{{ ivrItem.timeout }}</p>
+      </li>
+      <li class="details__item">
+        Invalid Retries:
+        <p>{{ ivrItem.invalidRetries }}</p>
+      </li>
     </ul>
+
     <h3>Buttons</h3>
-    <ul>
-      <li *ngFor="let button of ivrItem.ivrEntityList">
-        {{ button.name }}
+    <ul class="button-data__list">
+      <li
+        class="button-data__item"
+        *ngFor="let button of ivrItem.ivrEntityList"
+      >
+        <div>
+          Button:
+          <p>{{ button.name }}</p>
+        </div>
+        <div>
+          Action:
+          <p>{{ button.matchedAction }}</p>
+        </div>
+        <div>
+          Data:
+          <p>{{ button.matchedData }}</p>
+        </div>
+        <div>
+          Status:
+          <p>{{ button.leadStatus }}</p>
+        </div>
+        <div>
+          ID:
+          <p>{{ button.id }}</p>
+        </div>
+        <div>
+          IVR menu ID:
+          <p>{{ button.ivrId }}</p>
+        </div>
       </li>
     </ul>
   </div>
+
+  <app-home-btn></app-home-btn>
 </div>

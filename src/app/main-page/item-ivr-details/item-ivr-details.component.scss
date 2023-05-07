@@ -1,0 +1,56 @@
+@import "src/styles/mixins.scss";
+
+.details {
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    & > p {
+      max-width: 400px;
+      @include ellipsis;
+    }
+  }
+
+  &__list {
+    list-style: none;
+    background-color: var(--light-gray-bg);
+    padding: 20px 40px;
+    border-radius: 4px;
+  }
+}
+
+.button-data {
+  &__list {
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    list-style: none;
+  }
+
+  &__item {
+    padding: 20px 30px;
+    background-color: var(--light-gray-bg);
+    border-radius: 4px;
+
+    & > div {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    & > p {
+      max-width: 100px;
+      @include ellipsis;
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

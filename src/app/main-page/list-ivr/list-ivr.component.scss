@@ -1,3 +1,5 @@
+@import "src/styles/mixins.scss";
+
 .wrapper {
   padding-top: 60px;
 }
@@ -28,5 +30,10 @@ h3 > strong {
     &:not(:last-child) {
       margin-bottom: 15px;
     }
+  }
+
+  &__name {
+    max-width: 300px;
+    @include ellipsis;
   }
 }
