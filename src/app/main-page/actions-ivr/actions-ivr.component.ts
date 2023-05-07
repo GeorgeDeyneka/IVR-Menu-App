@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
 } from '@angular/core';
-import { FORM_DATA } from 'src/app/models/data/input-data';
 import {
   ActionsFormValues,
   ActionsTableData,
