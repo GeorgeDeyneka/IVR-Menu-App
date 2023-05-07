@@ -1,0 +1,31 @@
+.window {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  text-align: center;
+
+  &__title {
+    font-weight: inherit;
+    font-size: 22px;
+  }
+
+  &__button {
+    padding: 7px 40px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--blue-btn-bg);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      transition: background-color 150ms ease-out;
+      background-color: var(--blue-hover-btn-bg);
+    }
+  }
+}

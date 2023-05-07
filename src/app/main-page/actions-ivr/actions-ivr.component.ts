@@ -14,6 +14,9 @@ import { Ivr } from 'src/app/models/interfaces/Ivr.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IvrActionsService } from 'src/app/shared/services/ivr-actions.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from 'src/app/shared/modal/modal/modal.component';
+import { DialogContent } from 'src/app/models/interfaces/DialogContent.enum';
 
 @Component({
   selector: 'app-actions-ivr',
@@ -35,6 +38,7 @@ export class ActionsIvrComponent {
     private localStorageService: LocalStorageService,
     private ivrAddService: IvrAddService,
     private ivrActionsService: IvrActionsService,
+    public dialog: MatDialog,
     private router: Router
   ) {}
 
@@ -50,12 +54,25 @@ export class ActionsIvrComponent {
   }
 
   addButtonForm() {
-    if (this.buttonsCount === this.maxButtonsCount) return;
+    if (this.buttonsCount === this.maxButtonsCount) {
+      this.openDialog();
+      return;
+    }
     const newButton = this.ivrAddService.generateActionsButtonData();
     this.ivrActionsService.addNewButton(newButton);
   }
 
-  getDataFromChild(event: any) {
+  openDialog() {
+    this.dialog.open(ModalComponent, {
+      width: '400px',
+      height: '280px',
+      data: {
+        title: DialogContent.maxCountButtonsTitle,
+      },
+    });
+  }
+
+  getDataFromChild(event: ActionsFormValues) {
     this.buttonsCount--;
     this.ivrEntityList.push(event);
 

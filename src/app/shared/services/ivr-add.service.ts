@@ -3,9 +3,14 @@ import { BehaviorSubject } from 'rxjs';
 import { Ivr, IvrEntity } from 'src/app/models/interfaces/Ivr.interface';
 import { LocalStorageService } from './local-storage.service';
 import { BASE_SELECT } from 'src/app/models/data/input-data';
-import { CreateFormObject, CreateFormValues } from 'src/app/models/interfaces/CreateIvr.interface';
-import { ActionsFormValues } from 'src/app/models/interfaces/Actions.interface';
-
+import {
+  CreateFormObject,
+  CreateFormValues,
+} from 'src/app/models/interfaces/CreateIvr.interface';
+import {
+  ActionsFormValues,
+  OptionValue,
+} from 'src/app/models/interfaces/Actions.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +44,7 @@ export class IvrAddService {
   }
 
   generateActionsButtonData() {
-    const values: any[] = [];
+    const values: OptionValue[] = [];
 
     for (let i = 0; i < 10; i++) {
       values.push({

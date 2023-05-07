@@ -60,6 +60,7 @@ export class ActionsTableComponent implements OnInit, OnChanges {
           startValue,
           Validators.required
         );
+        console.log(acc)
         return acc;
       },
       {}
