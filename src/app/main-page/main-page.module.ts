@@ -14,6 +14,7 @@ import { ActionsIvrComponent } from './actions-ivr/actions-ivr.component';
 import { ActionsTableComponent } from './actions-ivr/actions-table/actions-table.component';
 import { ListIvrComponent } from './list-ivr/list-ivr.component';
 import { ItemIvrDetailsComponent } from './item-ivr-details/item-ivr-details.component';
+import { IvrButtonsDetailsComponent } from './item-ivr-details/ivr-buttons-details/ivr-buttons-details.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ItemIvrDetailsComponent } from './item-ivr-details/item-ivr-details.com
     ActionsTableComponent,
     ListIvrComponent,
     ItemIvrDetailsComponent,
+    IvrButtonsDetailsComponent,
   ],
   imports: [
     CommonModule,
