@@ -19,6 +19,7 @@ import {
   ActionsTableData,
 } from 'src/app/models/interfaces/Actions.interface';
 import { CheckValidService } from 'src/app/shared/services/check-valid.service';
+import { IvrActionsService } from 'src/app/shared/services/ivr-actions.service';
 
 @Component({
   selector: 'app-actions-table',
@@ -35,7 +36,8 @@ export class ActionsTableComponent implements OnInit, OnChanges {
 
   constructor(
     private fb: FormBuilder,
-    private checkValidService: CheckValidService
+    private checkValidService: CheckValidService,
+    private ivrActionsService: IvrActionsService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,9 @@ export class ActionsTableComponent implements OnInit, OnChanges {
     this.actionsForm = this.fb.group(formControls);
   }
 
-  deleteComponentData() {}
+  deleteComponentData() {
+    this.ivrActionsService.deleteButton(this.formData);
+  }
 
   makeFormActive() {
     this.actionsFormSubj$ = this.actionsForm.valueChanges

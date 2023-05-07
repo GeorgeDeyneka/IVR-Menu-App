@@ -1,4 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { FORM_DATA } from 'src/app/models/data/input-data';
 import {
   ActionsFormValues,
@@ -74,5 +78,9 @@ export class ActionsIvrComponent {
       ivrMenu,
       this.ivrEntityList
     );
+  }
+
+  ngOnDestroy(): void {
+    this.formDataSubj$.unsubscribe();
   }
 }
