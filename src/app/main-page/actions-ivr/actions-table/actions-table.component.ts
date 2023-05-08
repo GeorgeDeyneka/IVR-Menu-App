@@ -32,8 +32,9 @@ export class ActionsTableComponent implements OnInit, OnDestroy {
   @Output() actionsFormValues = new EventEmitter();
 
   public actionsForm: FormGroup;
-  public actionsFormSubj$: Subscription;
   public actionsInputData: ActionsFormData;
+  private actionsFormSubj$: Subscription;
+  private emitSubj$: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,7 @@ export class ActionsTableComponent implements OnInit, OnDestroy {
     this.actionsInputData = this.actionsForm.getRawValue();
     this.makeFormActive();
 
-    this.emitClick$.subscribe((value) => {
+    this.emitSubj$ = this.emitClick$.subscribe((value) => {
       if (value) {
         this.actionsFormValues.emit(this.actionsInputData);
       }
@@ -92,6 +93,6 @@ export class ActionsTableComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.actionsFormSubj$.unsubscribe();
-    this.emitClick$.unsubscribe();
+    this.emitSubj$.unsubscribe();
   }
 }
